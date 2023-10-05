@@ -175,16 +175,20 @@ def number_result(word : str,solutions : dict):
 
 # %%
 def main(puzzle):
-
+    print(puzzle)
     validate_puzzle(puzzle)
 
     operator = find_operator(puzzle)
+    print(f"Operator: {operator}")
 
     words = find_words(puzzle, operator)
+    print(f"Words: {words}")
 
     letters = find_letters(words)
+    print(f"Letters: {letters}")
 
     domains = possible_values(letters, words)
+    print(f"Possible values for letters: {domains}")
     
     constraints = [
         (letters, constraint_unique),
@@ -194,9 +198,11 @@ def main(puzzle):
 
     output = backtrack(problem)
     try:
-        print(f"{words[0]} {operator} {words[1]} = {words[2]}\n"+ 
-              f"{number_result(words[0], output)} {operator} {number_result(words[1], output)} = {number_result(words[2], output)}\n" + 
-              "__________________________________________________________________\n")
+        print(f"\nSolution:",
+              f"{words[0]} {operator} {words[1]} = {words[2]}",
+              f"{number_result(words[0], output)} {operator} {number_result(words[1], output)} = {number_result(words[2], output)}", 
+              "__________________________________________________________________\n", sep="\n")
+
         st.write(f"{words[0]} {operator} {words[1]} = {words[2]}")
         st.write(f"{number_result(words[0], output)} {operator} {number_result(words[1], output)} = {number_result(words[2], output)}")
     except:
